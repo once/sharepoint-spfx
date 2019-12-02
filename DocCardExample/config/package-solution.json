@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "doc-card-example-client-side-solution",
+    "id": "d04c5cae-aa66-400a-8815-a6a60e168c0a",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/doc-card-example.sppkg"
+  }
+}
