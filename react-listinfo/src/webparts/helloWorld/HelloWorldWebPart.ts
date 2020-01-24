@@ -11,6 +11,9 @@ import * as strings from 'HelloWorldWebPartStrings';
 import HelloWorld from './components/HelloWorld';
 import { IHelloWorldProps } from './components/IHelloWorldProps';
 
+import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
+import { escape } from '@microsoft/sp-lodash-subset';
+
 export interface IHelloWorldWebPartProps {
   description: string;
   listName: string;
@@ -69,7 +72,9 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
                 }),
 
                 PropertyPaneTextField('listName', {
-                  label: strings.ListNameFieldLabel
+                  label: strings.ListNameFieldLabel,
+                  onGetErrorMessage: this.validateListName.bind(this),
+                  deferredValidationTime: 500
                 })
               ]
             }
@@ -77,5 +82,38 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
         }
       ]
     };
+  }
+
+  private validateListName(value: string): Promise<string> {
+    
+    return new Promise<string>((resolve: (validationErrorMessage: string) => void, reject: (error: any) => void): void => {
+      
+      if (value === null || value.length === 0) {
+        resolve('Provide the list name');
+        return;
+      }
+
+      let requset = this.context.pageContext.web.absoluteUrl + `/_api/web/lists/getByTitle('${escape(value)}')?$select=Id`;
+      
+      this.context.spHttpClient.get(requset, SPHttpClient.configurations.v1)
+        .then((response: SPHttpClientResponse): void => {
+          if (response.ok) {
+            resolve('');
+            return;
+          }
+          else if (response.status === 404) {
+            resolve(`List '${escape(value)}' doesn't exist in the current site`);
+            return;
+          }
+          else {
+            resolve(`Error: ${response.statusText}. Please try again`);
+            return;
+          }
+        })
+        .catch((error: any): void => {
+          resolve(error);
+        });
+    });
+
   }
 }
