@@ -5,7 +5,7 @@ Workflow:
 Preview locally: gulp serve
 
 <b>My current position in tutorial:</b>
-https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/validate-web-part-property-values
+https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/migrate-script-editor-web-part-customizations
 
 <b>Reference:</b>
 
