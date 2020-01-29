@@ -4,23 +4,23 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "pageUrl": "https://okdev365rus.sharepoint.com/sites/SiteAlpha/SitePages/Home.aspx",
       "customActions": {
         "b75342e1-6605-4994-a355-7275b183d859": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
+            "TopMessage": "Some message 1"
           }
         }
       }
     },
     "globalMessage": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "pageUrl": "https://okdev365rus.sharepoint.com/sites/SiteAlpha/SitePages/Home.aspx",
       "customActions": {
         "b75342e1-6605-4994-a355-7275b183d859": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
+            "TopMessage": "Some message 2"
           }
         }
       }
